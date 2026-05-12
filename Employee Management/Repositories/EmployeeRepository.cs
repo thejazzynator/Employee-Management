@@ -9,7 +9,7 @@ namespace Employee_Management.Repositories
     {
         private readonly AppDbContext _context;
 
-        public EmployeeRepository(AppDbContext context)     
+        public EmployeeRepository(AppDbContext context)   // Dependency injection of the AppDbContext, which is used to interact with the database. The context is passed in through the constructor and assigned to a private readonly field for use in the repository methods.  
         { 
             _context = context;
         }
