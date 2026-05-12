@@ -17,7 +17,7 @@ namespace Employee_Management.Repositories
         {
             await _context.Employees.AddAsync(employee);
             await _context.SaveChangesAsync();
-        }
+        }0
 
         public async Task DeleteEmployeeAsync(int id)
         {
