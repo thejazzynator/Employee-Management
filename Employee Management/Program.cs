@@ -45,3 +45,6 @@ app.UseCors("MyCors");
 app.MapControllers();
 
 app.Run();
+
+// At the very end of Program.cs
+public partial class Program { }
