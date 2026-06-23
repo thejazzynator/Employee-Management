@@ -38,6 +38,11 @@ namespace Employee_Management.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
         {
+            if(ModelState.IsValid == false)
+            {
+                return BadRequest(ModelState);
+            }
+
             await _employeeRepository.AddEmployeeAsync(employee);
             return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
         }
@@ -55,6 +60,10 @@ namespace Employee_Management.Controllers
             if (id != employee.Id)
             {
                 return BadRequest();
+            }
+            if (ModelState.IsValid == false)
+            {
+                return BadRequest(ModelState);
             }
             await _employeeRepository.UpdateEmployeeAsync(employee);
             return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);

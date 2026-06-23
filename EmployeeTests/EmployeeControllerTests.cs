@@ -15,8 +15,8 @@ namespace EmployeeTests
         {
             EmployeeStubData.Employees = new List<Employee>
         {
-            new() { Id = 1, FirstName = "John", Position = "Software Engineer", Email = "john@example.com" },
-            new() { Id = 2, FirstName = "Jane", Position = "Project Manager", Email = "jane@example.com" }
+            new() { Id = 1, FirstName = "John", LastName = "Todd", Position = "Software Engineer", Email = "john@example.com", PhoneNumber = "123-456-7890" },
+            new() { Id = 2, FirstName = "Jane", LastName = "Doe", Position = "Project Manager", Email = "jane@example.com", PhoneNumber = "987-654-3210" }
         };
             _mockRepo = EmployeeStubData.GetMockEmployeeRepository();
             _controller = new EmployeeController(_mockRepo.Object);
@@ -66,7 +66,7 @@ namespace EmployeeTests
         public async Task CreateEmployee_ReturnsCreatedAtAction_AndAddsEmployee()
         {
             // Arrange
-            var newEmployee = new Employee { FirstName = "Alice", Position = "Designer", Email = "alice@example.com" };
+            var newEmployee = new Employee { FirstName = "Alice", LastName ="Doe", Position = "Designer", Email = "alice@example.com", PhoneNumber = "123-456-7890" };
             var initialCount = EmployeeStubData.Employees.Count;
 
             // Act
@@ -100,7 +100,7 @@ namespace EmployeeTests
         public async Task UpdateEmployeeAsync_ReturnsCreatedAtAction_WhenIdMatches()
         {
             // Arrange
-            var updatedEmployee = new Employee { Id = 1, FirstName = "John Updated", Position = "Senior Engineer", Email = "john@example.com" };
+            var updatedEmployee = new Employee { Id = 1, FirstName = "John Updated", LastName = "Todd", Position = "Senior Engineer", Email = "john@example.com", PhoneNumber = "123-456-7890" };
 
             // Act
             var result = await _controller.UpdateEmployeeAsync(1, updatedEmployee);
@@ -116,7 +116,7 @@ namespace EmployeeTests
         public async Task UpdateEmployeeAsync_ReturnsBadRequest_WhenIdMismatch()
         {
             // Arrange — route id doesn't match employee body id
-            var updatedEmployee = new Employee { Id = 2, FirstName = "John", Email = "john@example.com" };
+            var updatedEmployee = new Employee { Id = 2, FirstName = "John Updated", LastName = "Todd", Position = "Senior Engineer", Email = "john@example.com", PhoneNumber = "123-456-7890" };
 
             // Act
             var result = await _controller.UpdateEmployeeAsync(1, updatedEmployee);
