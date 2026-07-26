@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyCors", builder =>
     {
-        builder.WithOrigins("http://localhost:4200") //angular port
+        builder.WithOrigins("http://d2auidqb869js.cloudfront.net") //angular port
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -40,7 +40,7 @@ if(app.Environment.IsDevelopment())
 }
 
 
-app.UseCors("MyCors");
+app.UseCors("AllowFrontend");
 
 app.MapControllers();
 
