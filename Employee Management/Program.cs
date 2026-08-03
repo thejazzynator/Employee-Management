@@ -12,9 +12,9 @@ builder.Services.AddDbContext<AppDbContext>(
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("MyCors", builder =>
+    options.AddPolicy("AllowFrontend", builder =>
     {
-        builder.WithOrigins("http://d2auidqb869js.cloudfront.net") //angular port
+        builder.WithOrigins("https://d2auidqb869js.cloudfront.net") //angular port
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
